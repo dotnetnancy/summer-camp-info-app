@@ -1,0 +1,81 @@
+<ion-header>
+    <ion-navbar></ion-navbar>
+
+    <ion-toolbar>
+        <ion-segment secondary [(ngModel)]="divisionFilter" (ionChange)="filterDivision()">
+            <ion-segment-button value="division">
+                Division
+            </ion-segment-button>
+            <ion-segment-button value="all">
+                All
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-list [virtualScroll]="ranks" [approxItemHeight]="'132px'" [headerFn]="getHeader">
+        <ion-item-divider color="secondary" *virtualHeader="let header">
+            {{header}}
+        </ion-item-divider>
+
+        <ion-item *virtualItem="let school">
+            <ion-row>
+                <ion-col>
+                    <h2 ion-text color="primary">{{school.schoolName}}</h2>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <h4>Wins</h4>
+                </ion-col>
+                <ion-col>
+                    <h4>Losses</h4>
+                </ion-col>
+                <ion-col>
+                    <h4>Pct</h4>
+                </ion-col>
+                <ion-col>
+                    <h4>PF</h4>
+                </ion-col>
+                <ion-col>
+                    <h4>PA</h4>
+                </ion-col>
+                <ion-col>
+                    <h4>Diff</h4>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <h4>{{school.wins}}</h4>
+                </ion-col>
+                <ion-col>
+                    <h4>{{school.losses}}</h4>
+                </ion-col>
+                <ion-col>
+                    <h4>{{school.winningPct}}</h4>
+                </ion-col>
+                <ion-col>
+                    <h4>{{school.pointsFor}}</h4>
+                </ion-col>
+                <ion-col>
+                    <h4>{{school.pointsAgainst}}</h4>
+                </ion-col>
+                <ion-col>
+                    <h4>{{school.pointsDiff}}</h4>
+                </ion-col>
+            </ion-row>
+        </ion-item>
+    </ion-list>
+
+
+    <!--<ion-list>
+        <ion-item-group *ngFor="let division of allRanks">
+            
+            <ion-item *ngFor="let school of division.divisionRanks">
+
+            </ion-item>
+        </ion-item-group>
+    </ion-list>-->
+</ion-content>

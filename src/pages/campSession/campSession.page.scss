@@ -1,0 +1,11 @@
+$border-style: thin solid gray;
+
+
+.top-bottom-border {
+    border-top: $border-style;
+    border-bottom: $border-style;
+}
+
+.divider-col {
+    border-right: $border-style;
+}

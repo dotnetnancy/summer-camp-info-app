@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>Schools</ion-title>
+    </ion-navbar>
+
+    <ion-toolbar>
+        <ion-searchbar placeholder="Search"
+                       [(ngModel)]="queryText"
+                       (ionInput)="updateSchools()">
+        </ion-searchbar>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list> 
+        <ion-item-group *ngFor="let division of schools">
+            <ion-item-divider color="secondary" >{{division.divisionName}}</ion-item-divider>
+            <button ion-item *ngFor="let school of division.divisionSchools" (click)="itemTapped($event, school)">
+                {{school.name}}
+            </button>
+        </ion-item-group>
+    </ion-list>
+</ion-content>

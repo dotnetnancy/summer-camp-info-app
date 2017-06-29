@@ -1,0 +1,47 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <button menuToggle ion-button icon-only>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Summer CampSchedule</ion-title>
+    </ion-navbar>
+    <ion-toolbar color="secondary">
+        <ion-title>My Schools</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card *ngIf="!favorites">
+        <ion-card-header class="my-schools-header">No Followed Schools</ion-card-header>
+        <ion-card-content>
+            <p>You are not currently following any schools.</p>
+            <p>First select a summerCamp, then you can follow schools 
+                from their school page.</p>
+            <button ion-button icon-left full (click)="goToSummerCamps()">
+                <ion-icon name="search"></ion-icon>
+                Find a SummerCamp
+            </button>
+        </ion-card-content>
+    </ion-card>
+    
+
+    <ion-card *ngIf="favorites">
+        <ion-list>
+            <ion-list-header class="my-schools-header">Followed Schools</ion-list-header>
+            <button icon-left ion-item *ngFor="let item of favorites" (click)="favoriteTapped($event, item)">
+                <ion-icon name="star"></ion-icon>
+                {{item.school.name}}
+                <p>{{item.summerCampName}}</p>
+            </button>
+        </ion-list>
+        <ion-card-content>
+            <p>To follow more schools, select a summerCamp, 
+                then you can follow schools from their school page.</p>    
+            <button icon-left ion-button full (click)="goToSummerCamps()">
+                <ion-icon name="search"></ion-icon>
+                Find a SummerCamp
+            </button>
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>

@@ -1,0 +1,56 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>CampSession</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-row>
+        <ion-col width-50 text-center class="divider-col">
+            <button ion-button clear full (click)="schoolTapped(campSession.school1Id)">Home</button>
+        </ion-col>
+        <ion-col width-50 text-center>
+            <button ion-button clear full (click)="schoolTapped(campSession.school2Id)">Away</button>
+        </ion-col>
+    </ion-row>
+    <ion-row center>
+        <ion-col width-50 text-center class="divider-col" (click)="schoolTapped(campSession.school1Id)">
+            <h4>{{campSession.school1}}</h4>
+        </ion-col>
+        <ion-col width-50 text-center (click)="schoolTapped(campSession.school2Id)">
+            <h4>{{campSession.school2}}</h4>
+        </ion-col>
+    </ion-row>
+    <ion-row baseline class="top-bottom-border">
+        <ion-col text-center (click)="schoolTapped(campSession.school1Id)">
+            <h1 ion-text [color]="isWinner(campSession.school1Score, campSession.school2Score)">{{campSession.school1Score}}</h1>
+        </ion-col>
+        <ion-col text-center>
+            <ion-label>Score</ion-label>
+        </ion-col>
+        <ion-col text-center (click)="schoolTapped(campSession.school2Id)">
+            <h1 ion-text [color]="isWinner(campSession.school2Score, campSession.school1Score)">{{campSession.school2Score}}</h1>            
+        </ion-col>
+    </ion-row>
+
+    <ion-card>
+        <ion-item>
+            <ion-icon name="calendar" item-left></ion-icon>
+            {{campSession.campSessionTime | date:'M/d/yy'}} {{campSession.campSessionTime | date:'shortTime'}}
+        </ion-item>
+        <ion-row>
+            <ion-col width-60>
+                <ion-label>{{campSession.location}}</ion-label>
+            </ion-col>
+            <ion-col width-40 text-right>
+                <button ion-button icon-only outline (click)="goToMap()">
+                    <ion-icon name="map"></ion-icon>
+                </button>
+                <button ion-button icon-only outline (click)="goToDirections()">
+                    <ion-icon name="navigate"></ion-icon>
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+</ion-content>
+

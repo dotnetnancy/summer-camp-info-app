@@ -1,0 +1,57 @@
+<ion-header>
+    <ion-navbar></ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-refresher (ionRefresh)="refreshAll($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-card>
+        <ion-card-content>
+            <ion-row>
+                <ion-col width-50>
+                    <h2>Record: {{schoolRank.wins}}-{{schoolRank.losses}}</h2>
+                    <p>Coach: {{school.coach}}</p>
+                </ion-col>
+                <ion-col width-50 text-right>
+                    <button ion-button icon-left outline (click)="toggleFollow()" *ngIf="!isFollowing">
+                        <ion-icon name="star"></ion-icon>
+                        Add Favorite
+                    </button>
+                    <button ion-button icon-only (click)="toggleFollow()" *ngIf="isFollowing">
+                        <ion-icon name="star"></ion-icon>
+                    </button>
+                </ion-col>
+            </ion-row>
+            <ion-item>
+                <ion-label>Date Filter:</ion-label>
+                <ion-toggle [(ngModel)]="useDateFilter" (ionChange)="dateChanged()"></ion-toggle>
+                <ion-datetime displayFormat="M/D/YYYY" pickerFormat="M/D/YYYY"
+                    [(ngModel)]="dateFilter" (ionChange)="dateChanged()"
+                    [(disabled)]="!useDateFilter"></ion-datetime>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
+
+
+    <ion-list>
+        <ion-item *ngFor="let campSession of campSessions" (click)="campSessionClicked($event, campSession)">
+            <ion-row>
+                <ion-col width-20>
+                    <p>{{campSession.time | date:'M/d/yy'}}</p>
+                    <p>{{campSession.time | date:'shortTime'}}</p>
+                </ion-col>
+                <ion-col width-60>
+                    <p>{{campSession.homeAway}} {{campSession.opponent}}</p>
+                    <p>{{campSession.location}}</p>
+                </ion-col>
+                <ion-col width-20>
+                    <h4>{{campSession.scoreDisplay}}</h4>
+                    <!--<ion-badge [class]="getScoreDisplayBadgeClass(campSession)">{{getScoreWorL(campSession)}}</ion-badge>-->
+                    <ion-badge [color]="getScoreDisplayBadgeClass(campSession)">{{getScoreWorL(campSession)}}</ion-badge>
+                </ion-col>
+            </ion-row>
+        </ion-item>
+    </ion-list>
+</ion-content>
